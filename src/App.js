@@ -1,28 +1,41 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Form from './comp/Form';
+import List from './comp/List';
 
-class App extends Component {
+export default class App extends React.Component {
+  state = {
+    list: []
+  }
+
+  newValue = newValue => {
+    newValue = {
+      value: newValue,
+      id: Math.random() * 1000
+    }
+    console.log(newValue);
+    this.setState({
+      list: [...this.state.list, newValue]
+    })
+  }
+
+  deleteValue = id => {
+    console.log(id);
+    let list = this.state.list.filter(element => {
+      return element.id !== id;
+    })
+    this.setState({
+      list
+    })
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <Form newValue={this.newValue} />
+        <List data={this.state.list} deleteValue={this.deleteValue} />
       </div>
     );
   }
 }
 
-export default App;
