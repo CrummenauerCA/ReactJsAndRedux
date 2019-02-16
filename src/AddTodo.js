@@ -13,7 +13,7 @@ export default class AddTodo extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    console.log(this.state);
+    this.props.addTodo(this.state.content);
   }
 
   render() {
@@ -21,7 +21,7 @@ export default class AddTodo extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <label>Adicionar nova tarefa: </label>
-          <input type="text" onChange={this.handleChange} />
+          <input value={this.state.content} type="text" onChange={this.handleChange} />
         </form>
       </div>
     );
