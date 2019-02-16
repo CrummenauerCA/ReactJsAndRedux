@@ -1,41 +1,22 @@
-import React from 'react';
-import './App.css';
-import Form from './comp/Form';
-import List from './comp/List';
+import React, { Component } from 'react';
+import Todos from './Todos';
 
-export default class App extends React.Component {
+class App extends Component {
   state = {
-    list: []
-  }
-
-  newValue = newValue => {
-    newValue = {
-      value: newValue,
-      id: Math.random() * 1000
-    }
-    console.log(newValue);
-    this.setState({
-      list: [...this.state.list, newValue]
-    })
-  }
-
-  deleteValue = id => {
-    console.log(id);
-    let list = this.state.list.filter(element => {
-      return element.id !== id;
-    })
-    this.setState({
-      list
-    })
+    todos: [
+      {id: 1, content: 'Comprar leite'},
+      {id: 2, content: 'Aprender Redux'}
+    ]
   }
 
   render() {
-    return (
-      <div>
-        <Form newValue={this.newValue} />
-        <List data={this.state.list} deleteValue={this.deleteValue} />
+    return(
+      <div className="App">
+        <h1 className="center blue-text">Tarefas</h1>
+        <Todos todos={this.state.todos} />
       </div>
     );
   }
 }
 
+export default App;
