@@ -15,6 +15,23 @@ export default class Home extends Component {
   }
 
   render() {
+    const { posts } = this.state;
+    const postList = posts.length ? (
+      posts.map(post => {
+        return (
+          <div className="post card" key={post.id}>
+            <div className="card-content">
+              <span className="card-title">{post.title}</span>
+              <p>{post.body}</p>
+            </div>
+          </div>
+        )
+      })
+    ) : (
+      <div>
+        Sem postagens ainda...
+      </div>
+    );
     return (
       <div className="container">
         <h4 className="center">Home</h4>
@@ -22,6 +39,7 @@ export default class Home extends Component {
           Phasellus rhoncus est sit amet vulputate gravida. Integer sed erat justo. Donec nec tortor id erat tempus imperdiet.
           Aliquam sapien elit, lobortis sit amet egestas quis, tincidunt vitae tortor.
         Curabitur convallis pharetra malesuada. Nunc sed efficitur dolor. Morbi suscipit urna est, a tempor enim suscipit ornare.</p>
+        {postList}
       </div>
     )
   }
