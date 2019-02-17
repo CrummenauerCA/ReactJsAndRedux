@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default class Home extends Component {
   state = {
@@ -21,17 +22,19 @@ export default class Home extends Component {
         return (
           <div className="post card" key={post.id}>
             <div className="card-content">
-              <span className="card-title">{post.title}</span>
+              <Link to={'/' + post.id}>
+                <span className="card-title">{post.title}</span>
+              </Link>
               <p>{post.body}</p>
             </div>
           </div>
         )
       })
     ) : (
-      <div>
-        Sem postagens ainda...
+        <div>
+          Sem postagens ainda...
       </div>
-    );
+      );
     return (
       <div className="container">
         <h4 className="center">Home</h4>
